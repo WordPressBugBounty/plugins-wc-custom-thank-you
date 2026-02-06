@@ -1,0 +1,235 @@
+
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+.wp-block-wccty-block-wc-custom-thank-you {
+	max-width: 1200px;
+	margin: 2rem auto;
+	padding: 2rem;
+	background: #fff;
+
+	.order-confirmation-error {
+		padding: 1.5rem;
+		background: #fff3cd;
+		border: 1px solid #ffc107;
+		border-radius: 4px;
+		color: #856404;
+		text-align: center;
+
+		p {
+			margin: 0;
+			font-size: 1rem;
+		}
+	}
+
+	.order-header {
+		margin: 2rem 0;
+		padding-bottom: 1.5rem;
+		border-bottom: 2px solid #e0e0e0;
+
+		h2 {
+			margin: 0 0 0.5rem 0;
+			color: #333;
+			font-size: 2rem;
+		}
+
+		.order-date {
+			margin: 0.5rem 0;
+			color: #666;
+			font-size: 1rem;
+			line-height: 1rem;
+		}
+
+		.order-status {
+			margin: 0.5rem 0;
+			font-size: 1rem;
+
+			strong {
+				color: #333;
+			}
+
+			.status-badge {
+				display: inline-block;
+				padding: 0.25rem 0.75rem;
+				background: var(--wccty-accent-color, #4caf50);
+				color: var(--wccty-accent-text-color, #ffffff);
+				border-radius: 4px;
+				font-size: 0.875rem;
+				font-weight: 600;
+				text-transform: capitalize;
+				margin-left: 0.5rem;
+			}
+		}
+	}
+
+	.order-details {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		margin-bottom: 2rem;
+
+		@media (min-width: 768px) {
+			grid-template-columns: 1fr 2fr;
+		}
+
+		h3 {
+			margin: 0 0 1rem 0;
+			color: #333;
+			font-size: 1.25rem;
+			border-bottom: 1px solid #e0e0e0;
+			padding-bottom: 0.5rem;
+		}
+
+		p {
+			margin: 0.5rem 0;
+			color: #666;
+			line-height: 1.6;
+		}
+
+		.customer-details {
+			padding: 1rem;
+			background: var(--wccty-section-bg, #f9f9f9);
+			border-radius: 4px;
+		}
+
+		.addresses {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+
+			@media (min-width: 768px) {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			.billing-address,
+			.shipping-address {
+				padding: 1rem;
+				background: var(--wccty-section-bg, #f9f9f9);
+				border-radius: 4px;
+			}
+		}
+	}
+
+	.order-items {
+		margin-bottom: 2rem;
+
+		h3 {
+			margin: 0 0 1rem 0;
+			color: #333;
+			font-size: 1.25rem;
+			border-bottom: 1px solid #e0e0e0;
+			padding-bottom: 0.5rem;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			background: #fff;
+			border: none;
+
+			thead {
+				background: var(--wccty-section-bg, #f9f9f9);
+
+				th {
+					padding: 0.75rem;
+					text-align: left;
+					font-weight: 600;
+					color: #333;
+					border: none;
+				}
+			}
+
+			tbody {
+				tr {
+					border-bottom: 1px solid #e0e0e0;
+
+					&:last-child {
+						border-bottom: none;
+					}
+
+					td {
+						padding: 1rem 0.75rem;
+						color: #666;
+						border: none;
+
+						&:last-child {
+							text-align: right;
+							font-weight: 600;
+							color: #333;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.order-totals {
+		margin-top: 2rem;
+		padding: 1.5rem;
+		background: var(--wccty-section-bg, #f9f9f9);
+		border-radius: 4px;
+
+		table {
+			width: 100%;
+			max-width: 400px;
+			margin-left: auto;
+			border-collapse: collapse;
+			border: none;
+
+			tr {
+				border-bottom: 1px solid #e0e0e0;
+
+				&:last-child {
+					border-bottom: none;
+				}
+
+				&.order-total {
+					border-top: 2px solid #333;
+					font-size: 1.25rem;
+
+					th,
+					td {
+						padding-top: 1rem;
+						font-weight: 700;
+						color: #333;
+					}
+				}
+
+				th {
+					padding: 0.75rem;
+					text-align: left;
+					font-weight: 600;
+					color: #666;
+					border: none;
+				}
+
+				td {
+					padding: 0.75rem;
+					text-align: right;
+					font-weight: 600;
+					color: #333;
+					border: none;
+				}
+			}
+		}
+	}
+
+	.payment-method {
+		margin-top: 1.5rem;
+		padding: 1rem;
+		background: var(--wccty-payment-bg, #e3f2fd);
+		border-left: 4px solid var(--wccty-payment-border-color, #2196f3);
+		border-radius: 4px;
+
+		p {
+			margin: 0;
+			color: var(--wccty-payment-text-color, #333333);
+
+			strong {
+				color: var(--wccty-payment-border-color, #2196f3);
+			}
+		}
+	}
+}

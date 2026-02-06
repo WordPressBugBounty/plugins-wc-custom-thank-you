@@ -1,0 +1,202 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!../../../../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+.wp-block-wccty-block-wc-custom-thank-you {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-confirmation-error {
+  padding: 1.5rem;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  color: #856404;
+  text-align: center;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-confirmation-error p {
+  margin: 0;
+  font-size: 1rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-header {
+  margin: 2rem 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 2rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-header .order-date {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-header .order-status {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-header .order-status strong {
+  color: #333;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-header .order-status .status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--wccty-accent-color, #4caf50);
+  color: var(--wccty-accent-text-color, #ffffff);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-right: 0.5rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+  .wp-block-wccty-block-wc-custom-thank-you .order-details {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-details h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.25rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-details p {
+  margin: 0.5rem 0;
+  color: #666;
+  line-height: 1.6;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-details .customer-details {
+  padding: 1rem;
+  background: var(--wccty-section-bg, #f9f9f9);
+  border-radius: 4px;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-details .addresses {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .wp-block-wccty-block-wc-custom-thank-you .order-details .addresses {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-details .addresses .billing-address,
+.wp-block-wccty-block-wc-custom-thank-you .order-details .addresses .shipping-address {
+  padding: 1rem;
+  background: var(--wccty-section-bg, #f9f9f9);
+  border-radius: 4px;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items {
+  margin-bottom: 2rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.25rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table thead {
+  background: var(--wccty-section-bg, #f9f9f9);
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table thead th {
+  padding: 0.75rem;
+  text-align: right;
+  font-weight: 600;
+  color: #333;
+  border: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table tbody tr:last-child {
+  border-bottom: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table tbody tr td {
+  padding: 1rem 0.75rem;
+  color: #666;
+  border: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-items table tbody tr td:last-child {
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--wccty-section-bg, #f9f9f9);
+  border-radius: 4px;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table {
+  width: 100%;
+  max-width: 400px;
+  margin-right: auto;
+  border-collapse: collapse;
+  border: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr:last-child {
+  border-bottom: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr.order-total {
+  border-top: 2px solid #333;
+  font-size: 1.25rem;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr.order-total th,
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr.order-total td {
+  padding-top: 1rem;
+  font-weight: 700;
+  color: #333;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr th {
+  padding: 0.75rem;
+  text-align: right;
+  font-weight: 600;
+  color: #666;
+  border: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .order-totals table tr td {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border: none;
+}
+.wp-block-wccty-block-wc-custom-thank-you .payment-method {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--wccty-payment-bg, #e3f2fd);
+  border-right: 4px solid var(--wccty-payment-border-color, #2196f3);
+  border-radius: 4px;
+}
+.wp-block-wccty-block-wc-custom-thank-you .payment-method p {
+  margin: 0;
+  color: var(--wccty-payment-text-color, #333333);
+}
+.wp-block-wccty-block-wc-custom-thank-you .payment-method p strong {
+  color: var(--wccty-payment-border-color, #2196f3);
+}

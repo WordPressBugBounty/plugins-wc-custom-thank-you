@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wccty/block-wc-custom-thank-you",
+  "version": "0.1.0",
+  "title": "Order Confirmation",
+  "category": "woocommerce",
+  "icon": "feedback",
+  "description": "Display complete WooCommerce order details including items, totals, and customer information.",
+  "example": {},
+  "attributes": {
+    "accentColor": {
+      "type": "string",
+      "default": "#4caf50"
+    },
+    "accentTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "sectionBackgroundColor": {
+      "type": "string",
+      "default": "#f9f9f9"
+    },
+    "paymentBackgroundColor": {
+      "type": "string",
+      "default": "#e3f2fd"
+    },
+    "paymentBorderColor": {
+      "type": "string",
+      "default": "#2196f3"
+    },
+    "paymentTextColor": {
+      "type": "string",
+      "default": "#333333"
+    }
+  },
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "width": true
+    }
+  },
+  "textdomain": "wc-custom-thank-you",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
