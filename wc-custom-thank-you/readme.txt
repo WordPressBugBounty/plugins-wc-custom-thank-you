@@ -4,7 +4,7 @@ Tags: woocommerce, custom thank you page, woo thank you page, order confirmation
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ The WooCommerce "thank you" page (order confirmation / order received page) is o
 
 = Attribution =
 
-This plugin was originally created and maintained by [Nicola Mustone](https://profiles.wordpress.org/nicolamustone/). You should definitely check out his blog ["But. Honestly](https://buthonestly.io/).
+This plugin was originally created and maintained by [Nicola Mustone](https://profiles.wordpress.org/nicolamustone/). You should definitely check out his blog ["But. Honestly"](https://buthonestly.io/).
 
 = Why you’ll love it =
 
@@ -144,6 +144,10 @@ This plugin loads language files from:
 Put your custom language files in one of these locations (**the first one is recommended**). If you save the files in the last location you will lose them when updating the plugin.
 
 == Changelog ==
+
+= 2.1.0 - 2026-03-24 =
+* New - WC Version compatibility
+* Fix - Readme fixes
 
 = 2.0.0 - 2026-01-01 =
 * New - Completely rewritten codebase
