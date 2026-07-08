@@ -2,36 +2,84 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "wccty/block-wc-custom-thank-you",
-  "version": "0.1.0",
+  "version": "2.2.0",
   "title": "Order Confirmation",
   "category": "woocommerce",
   "icon": "feedback",
   "description": "Display complete WooCommerce order details including items, totals, and customer information.",
   "example": {},
   "attributes": {
+    "template": {
+      "type": "string",
+      "default": "default"
+    },
+    "heroTitle": {
+      "type": "string",
+      "default": ""
+    },
     "accentColor": {
       "type": "string",
-      "default": "#4caf50"
+      "default": ""
     },
     "accentTextColor": {
       "type": "string",
-      "default": "#ffffff"
+      "default": ""
     },
     "sectionBackgroundColor": {
       "type": "string",
-      "default": "#f9f9f9"
+      "default": ""
     },
     "paymentBackgroundColor": {
       "type": "string",
-      "default": "#e3f2fd"
+      "default": ""
     },
     "paymentBorderColor": {
       "type": "string",
-      "default": "#2196f3"
+      "default": ""
     },
     "paymentTextColor": {
       "type": "string",
-      "default": "#333333"
+      "default": ""
+    },
+    "showCustomerDetails": {
+      "type": "boolean",
+      "default": true
+    },
+    "showBillingAddress": {
+      "type": "boolean",
+      "default": true
+    },
+    "showShippingAddress": {
+      "type": "boolean",
+      "default": true
+    },
+    "showOrderNote": {
+      "type": "boolean",
+      "default": true
+    },
+    "showOrderItems": {
+      "type": "boolean",
+      "default": true
+    },
+    "showOrderTotals": {
+      "type": "boolean",
+      "default": true
+    },
+    "showPaymentMethod": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDownloads": {
+      "type": "boolean",
+      "default": true
+    },
+    "showProductImages": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSku": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {

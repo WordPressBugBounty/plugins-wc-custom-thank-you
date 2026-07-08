@@ -6,5 +6,74 @@
  */
 
 .wp-block-wccty-block-wc-custom-thank-you {
-	/* Intentionally empty. */
+	// Editor-only placeholder standing in for a product image in the preview.
+	.order-item-image--placeholder {
+		display: inline-block;
+		width: 48px;
+		height: 48px;
+		border-radius: 4px;
+		background: #e0e0e0;
+		flex-shrink: 0;
+	}
+
+	// Editor-only baseline for the WooCommerce Core preview. WooCommerce's
+	// front-end CSS is not loaded in the editor, so give the preview a sensible
+	// look here. On the front end the theme's WooCommerce styles handle it.
+	.wccty-woo-preview {
+		.woocommerce-order-overview {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.5rem;
+			list-style: none;
+			margin: 0 0 1.5rem 0;
+			padding: 1rem 0;
+			border-top: 1px solid #e0e0e0;
+			border-bottom: 1px solid #e0e0e0;
+
+			li {
+				font-size: 0.85rem;
+				color: #666;
+
+				strong {
+					display: block;
+					font-size: 1rem;
+					color: #333;
+				}
+			}
+		}
+
+		.woocommerce-order-details__title,
+		.woocommerce-column__title {
+			font-size: 1.25rem;
+			margin: 1.5rem 0 1rem;
+		}
+
+		table.woocommerce-table--order-details {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 1.5rem;
+
+			th,
+			td {
+				padding: 0.75rem;
+				border: 1px solid #e0e0e0;
+				text-align: left;
+			}
+		}
+
+		.woocommerce-columns--2 {
+			display: flex;
+			gap: 2rem;
+
+			.woocommerce-column {
+				flex: 1 1 0;
+			}
+		}
+
+		address {
+			font-style: normal;
+			line-height: 1.6;
+			color: #666;
+		}
+	}
 }

@@ -26,7 +26,13 @@ final class WC_Custom_Thankyou {
 	protected static $instance = null;
 
 	/**
-	 * Thank you page ID (kept for backwards compatibility).
+	 * Configured Thank You page ID, captured when the plugin boots.
+	 *
+	 * Retained only as a read-only backwards-compatibility snapshot for any
+	 * third-party code that reads `WC_Custom_Thankyou::instance()->page_id`.
+	 * It is not used internally and may be stale if the setting changes during
+	 * the request; internal code reads the option directly instead. Do not add
+	 * new internal dependencies on this property.
 	 *
 	 * @var int
 	 */

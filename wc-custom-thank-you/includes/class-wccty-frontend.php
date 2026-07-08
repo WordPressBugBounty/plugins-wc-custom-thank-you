@@ -75,56 +75,6 @@ final class WCCTY_Frontend {
 	}
 
 	/**
-	 * Get sanitized order ID from the request.
-	 *
-	 * @return int
-	 */
-	private function get_order_id_from_request() {
-		$order_id = filter_input(
-			INPUT_GET,
-			'order',
-			FILTER_VALIDATE_INT,
-			array(
-				'options' => array(
-					'min_range' => 1,
-				),
-			)
-		);
-
-		if ( null === $order_id || false === $order_id ) {
-			return 0;
-		}
-
-		return absint( $order_id );
-	}
-
-	/**
-	 * Get sanitized order key from the request.
-	 *
-	 * @return string
-	 */
-	private function get_order_key_from_request() {
-		$order_key = filter_input( INPUT_GET, 'key', FILTER_UNSAFE_RAW );
-
-		if ( ! is_string( $order_key ) || '' === $order_key ) {
-			return '';
-		}
-
-		$order_key = sanitize_text_field( $order_key );
-
-		if ( '' === $order_key ) {
-			return '';
-		}
-
-		// Basic validation: only allow characters used by WooCommerce order keys.
-		if ( 64 < strlen( $order_key ) || ! preg_match( '/^[A-Za-z0-9_]+$/', $order_key ) ) {
-			return '';
-		}
-
-		return $order_key;
-	}
-
-	/**
 	 * Make WooCommerce treat the custom Thank You page as a checkout page.
 	 *
 	 * This allows WooCommerce to enqueue its usual checkout styles and scripts.
@@ -175,7 +125,7 @@ final class WCCTY_Frontend {
 			return;
 		}
 
-		$order_key = $this->get_order_key_from_request();
+		$order_key = WCCTY_Order_Resolver::get_order_key_from_request();
 		if ( '' === $order_key ) {
 			return;
 		}
@@ -213,8 +163,8 @@ final class WCCTY_Frontend {
 
 		$handled = true;
 
-		$order_id  = $this->get_order_id_from_request();
-		$order_key = $this->get_order_key_from_request();
+		$order_id  = WCCTY_Order_Resolver::get_order_id_from_request();
+		$order_key = WCCTY_Order_Resolver::get_order_key_from_request();
 
 		if ( ! $order_id || '' === $order_key ) {
 			return $content;
@@ -222,7 +172,7 @@ final class WCCTY_Frontend {
 
 		// If the page already contains the order confirmation block, do not append the legacy template output.
 		if ( $this->request_uses_order_confirmation_block() ) {
-			$order = $this->get_valid_order_from_request();
+			$order = WCCTY_Order_Resolver::get_order_from_request();
 
 			if ( $order ) {
 				$actions_output = $this->maybe_run_thankyou_actions_without_template( $order );
@@ -280,6 +230,12 @@ final class WCCTY_Frontend {
 			return true;
 		}
 
+		// The Order Confirmation Elementor widget (and the block) flag the shared
+		// renderer when they output real order details, so we detect either one.
+		if ( class_exists( 'WCCTY_Order_Confirmation_Renderer' ) && WCCTY_Order_Confirmation_Renderer::has_rendered_order() ) {
+			return true;
+		}
+
 		if ( ! function_exists( 'has_block' ) ) {
 			return false;
 		}
@@ -294,64 +250,87 @@ final class WCCTY_Frontend {
 			$post_to_check = get_post( $page_id );
 		}
 
-		if ( $post_to_check instanceof WP_Post ) {
-			return has_block( 'wccty/block-wc-custom-thank-you', $post_to_check );
+		if ( $post_to_check instanceof WP_Post && has_block( 'wccty/block-wc-custom-thank-you', $post_to_check ) ) {
+			return true;
+		}
+
+		// Block themes: the block may live in the site template / template parts
+		// rather than the page content. Such a block can render *after* the_content,
+		// so checking the page alone would miss it and we'd duplicate the output.
+		return $this->current_template_has_order_confirmation_block();
+	}
+
+	/**
+	 * Whether the current block-theme template (or a template part it references)
+	 * contains the order confirmation block.
+	 *
+	 * @return bool
+	 */
+	private function current_template_has_order_confirmation_block() {
+		if ( empty( $GLOBALS['_wp_current_template_content'] ) || ! is_string( $GLOBALS['_wp_current_template_content'] ) ) {
+			return false;
+		}
+
+		return $this->content_has_order_confirmation_block( $GLOBALS['_wp_current_template_content'] );
+	}
+
+	/**
+	 * Recursively check block markup (and any referenced template parts) for the block.
+	 *
+	 * @param string $content Block markup to inspect.
+	 * @return bool
+	 */
+	private function content_has_order_confirmation_block( $content ) {
+		if ( ! is_string( $content ) || '' === $content ) {
+			return false;
+		}
+
+		if ( has_block( 'wccty/block-wc-custom-thank-you', $content ) ) {
+			return true;
+		}
+
+		// Only descend into template parts when there are any to descend into.
+		if ( ! function_exists( 'parse_blocks' ) || false === strpos( $content, 'wp:template-part' ) ) {
+			return false;
+		}
+
+		foreach ( parse_blocks( $content ) as $block ) {
+			if ( $this->block_tree_references_order_confirmation_block( $block ) ) {
+				return true;
+			}
 		}
 
 		return false;
 	}
 
 	/**
-	 * Get a valid order from the custom Thank You page request.
+	 * Walk a parsed block tree, resolving template parts and checking their content.
 	 *
-	 * @return WC_Order|false
+	 * @param array $block Parsed block.
+	 * @return bool
 	 */
-	private function get_valid_order_from_request() {
-		static $resolved = false;
-		static $order    = false;
+	private function block_tree_references_order_confirmation_block( $block ) {
+		if (
+			isset( $block['blockName'] ) && 'core/template-part' === $block['blockName']
+			&& ! empty( $block['attrs']['slug'] ) && function_exists( 'get_block_template' )
+		) {
+			$theme = ! empty( $block['attrs']['theme'] ) ? $block['attrs']['theme'] : get_stylesheet();
+			$part  = get_block_template( $theme . '//' . $block['attrs']['slug'], 'wp_template_part' );
 
-		if ( $resolved ) {
-			return $order;
-		}
-
-		$resolved = true;
-
-		$order_id_raw  = $this->get_order_id_from_request();
-		$order_key_raw = $this->get_order_key_from_request();
-
-		if ( ! $order_id_raw || '' === $order_key_raw ) {
-			$order = false;
-			return $order;
-		}
-
-		$order_id = absint(
-			apply_filters(
-				'woocommerce_thankyou_order_id',
-				$order_id_raw
-			)
-		);
-
-		$order_key_raw = wc_clean( $order_key_raw );
-		$order_key     = wc_clean(
-			apply_filters(
-				'woocommerce_thankyou_order_key',
-				$order_key_raw
-			)
-		);
-
-		if ( $order_id > 0 ) {
-			$order = wc_get_order( $order_id );
-
-			if ( ! $order || $order->get_order_key() !== $order_key ) {
-				$order = false;
+			if ( $part instanceof WP_Block_Template && has_block( 'wccty/block-wc-custom-thank-you', (string) $part->content ) ) {
+				return true;
 			}
 		}
 
-		if ( ! $order || $order->get_id() !== $order_id || $order->get_order_key() !== $order_key ) {
-			$order = false;
+		if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) ) {
+			foreach ( $block['innerBlocks'] as $inner_block ) {
+				if ( $this->block_tree_references_order_confirmation_block( $inner_block ) ) {
+					return true;
+				}
+			}
 		}
 
-		return $order;
+		return false;
 	}
 
 	/**
@@ -437,7 +416,7 @@ final class WCCTY_Frontend {
 	public function shortcode_thankyou() {
 		// If the page already contains the order confirmation block, do not output the legacy template.
 		if ( $this->is_custom_thankyou_page() && $this->request_uses_order_confirmation_block() ) {
-			$order = $this->get_valid_order_from_request();
+			$order = WCCTY_Order_Resolver::get_order_from_request();
 
 			if ( $order ) {
 				return $this->maybe_run_thankyou_actions_without_template( $order );
@@ -455,41 +434,19 @@ final class WCCTY_Frontend {
 	 * @return string
 	 */
 	private function generate_thankyou_markup() {
-		$order_id_raw  = $this->get_order_id_from_request();
-		$order_key_raw = $this->get_order_key_from_request();
+		$order_id  = WCCTY_Order_Resolver::get_order_id_from_request();
+		$order_key = WCCTY_Order_Resolver::get_order_key_from_request();
 
-		if ( ! $order_id_raw || '' === $order_key_raw ) {
+		// Stay silent unless the request carries both an order ID and key.
+		if ( ! $order_id || '' === $order_key ) {
 			return '';
 		}
 
 		wc_print_notices();
 
-		$order_id = absint(
-			apply_filters(
-				'woocommerce_thankyou_order_id',
-				$order_id_raw
-			)
-		);
+		$order = WCCTY_Order_Resolver::get_order_from_request();
 
-		$order_key_raw = wc_clean( $order_key_raw );
-		$order_key     = wc_clean(
-			apply_filters(
-				'woocommerce_thankyou_order_key',
-				$order_key_raw
-			)
-		);
-
-		$order = false;
-
-		if ( $order_id > 0 ) {
-			$order = wc_get_order( $order_id );
-
-			if ( ! $order || $order->get_order_key() !== $order_key ) {
-				$order = false;
-			}
-		}
-
-		if ( ! $order || $order->get_id() !== $order_id || $order->get_order_key() !== $order_key ) {
+		if ( ! $order ) {
 			$wccty_order_received_text = apply_filters(
 				'woocommerce_thankyou_order_received_text',
 				__( 'Thank you. Your order has been received.', 'wc-custom-thank-you' ),

@@ -1,8 +1,8 @@
-# Copyright (C) 2025 Riaan Knoetze
+# Copyright (C) 2026 Riaan Knoetze
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Thank You Page for WooCommerce 2.0.0\n"
+"Project-Id-Version: Custom Thank You Page for WooCommerce 2.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/wc-custom-thank-you\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -10,8 +10,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-26T13:22:13+00:00\n"
-"PO-Revision-Date: 2025-12-26 13:25+0000\n"
+"POT-Creation-Date: 2026-07-08T08:10:39+00:00\n"
+"PO-Revision-Date: 2026-07-08 08:19+0000\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language: pt-BR\n"
@@ -32,8 +32,8 @@ msgid ""
 "A WooCommerce extension that allows you to define a custom Thank You (Order "
 "Confirmation) page."
 msgstr ""
-"Uma extensão do WooCommerce que permite definir uma página de Agradecimento "
-"(Confirmação de Pedido) personalizada."
+"Uma extensão do WooCommerce que permite definir uma página de agradecimento "
+"(confirmação de pedido) personalizada."
 
 #: woocommerce-custom-thankyou.php
 #. Author of the plugin
@@ -45,8 +45,36 @@ msgstr "Riaan Knoetze"
 msgid "https://profiles.wordpress.org/riaanknoetze/"
 msgstr "https://profiles.wordpress.org/riaanknoetze/"
 
-#: build/render.php:62
-#: src/render.php:62
+#: includes/class-wc-custom-thankyou.php:74
+#: includes/class-wc-custom-thankyou.php:83
+msgid "Cheatin&#8217; huh?"
+msgstr "Trapaceando, hein?"
+
+#: includes/class-wccty-admin.php:59
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:40
+msgid "Order Confirmation"
+msgstr "Confirmação do pedido"
+
+#: includes/class-wccty-admin.php:65
+msgid "Order confirmation page"
+msgstr "Página de confirmação do pedido"
+
+#: includes/class-wccty-bootstrap.php:122
+msgid "Settings"
+msgstr "Configurações"
+
+#: includes/class-wccty-elementor.php:63
+msgid "Custom Thank You"
+msgstr "Agradecimento Personalizado"
+
+#: includes/class-wccty-frontend.php:452
+#: includes/templates/woocommerce.php:20
+#: build/index.js:1
+#: src/edit.js:391
+msgid "Thank you. Your order has been received."
+msgstr "Obrigado. Seu pedido foi recebido."
+
+#: includes/class-wccty-order-confirmation-renderer.php:232
 msgid ""
 "WooCommerce is not installed or activated. This block requires WooCommerce "
 "to function."
@@ -54,251 +82,483 @@ msgstr ""
 "O WooCommerce não está instalado ou ativado. Este bloco requer o "
 "WooCommerce para funcionar."
 
-#: build/render.php:152
-#: src/render.php:152
+#: includes/class-wccty-order-confirmation-renderer.php:253
+msgid ""
+"Order Confirmation — this area displays the customer's order details "
+"(items, totals, and addresses) on your Thank You page. There is no order to "
+"preview here yet."
+msgstr ""
+"Confirmação do Pedido — esta área exibe os detalhes do pedido do cliente "
+"(itens, totais e endereços) na sua página de agradecimento. Ainda não há "
+"pedido para visualizar aqui."
+
+#: includes/class-wccty-order-confirmation-renderer.php:259
 msgid "No order found. Please complete a purchase to view order details."
 msgstr ""
-"Nenhum pedido encontrado. Por favor, complete uma compra para ver os "
-"detalhes do pedido."
+"Nenhum pedido encontrado. Conclua uma compra para visualizar os detalhes do "
+"pedido."
 
-#: build/render.php:212
-#: src/render.php:212
+#: includes/class-wccty-order-confirmation-renderer.php:345
+#: includes/templates/woocommerce.php:168
+msgid "N/A"
+msgstr "N/D"
+
+#: includes/templates/default.php:23
 #. translators: %s: order number.
 msgid "Order #%s"
-msgstr "Pedido #%s"
+msgstr "Pedido nº %s"
 
-#: build/render.php:231
-#: src/render.php:231
-msgid "N/A"
-msgstr "N/A"
-
-#: build/render.php:236
-#: src/render.php:236
+#: includes/templates/default.php:34
 #. translators: %s: formatted order date.
 msgid "Order Date: %s"
 msgstr "Data do Pedido: %s"
 
-#: build/render.php:243
-#: src/render.php:243
-#: build/index.js:113
-#: src/edit.js:114
-#: build/index.js:114
+#: includes/templates/default.php:41
+#: build/index.js:1
+#: src/edit.js:255
 msgid "Status:"
 msgstr "Status:"
 
-#: build/render.php:250
-#: src/render.php:250
-#: build/index.js:124
-#: src/edit.js:123
-#: build/index.js:123
+#: includes/templates/default.php:48
+#: includes/templates/hero.php:67
+#: build/index.js:1
+#: src/edit.js:215
+msgid "Order Note"
+msgstr "Observação do Pedido"
+
+#: includes/templates/default.php:58
+#: includes/templates/hero.php:165
+#: build/index.js:1
+#: src/edit.js:144
 msgid "Customer Details"
 msgstr "Detalhes do Cliente"
 
-#: build/render.php:262
-#: src/render.php:262
-#: build/index.js:133
-#: src/edit.js:133
+#: includes/templates/default.php:73
+#: includes/templates/hero.php:180
+#: build/index.js:1
+#: src/edit.js:156
 msgid "Billing Address"
 msgstr "Endereço de Cobrança"
 
-#: build/render.php:277
-#: src/render.php:277
-#: build/index.js:140
-#: src/edit.js:142
-#: build/index.js:142
+#: includes/templates/default.php:90
+#: includes/templates/hero.php:197
+#: build/index.js:1
+#: src/edit.js:166
 msgid "Shipping Address"
 msgstr "Endereço de Entrega"
 
-#: build/render.php:291
-#: src/render.php:291
+#: includes/templates/default.php:104
+#: includes/templates/hero.php:211
+#: includes/templates/woocommerce.php:188
 msgid "Same as billing address"
 msgstr "Igual ao endereço de cobrança"
 
-#: build/render.php:298
-#: src/render.php:298
-#: build/index.js:149
-#: src/edit.js:153
-#: build/index.js:153
+#: includes/templates/default.php:115
+#: includes/templates/hero.php:74
+#: build/index.js:1
+#: src/edit.js:265
+#: src/edit.js:361
 msgid "Order Items"
 msgstr "Itens do Pedido"
 
-#: build/render.php:302
-#: src/render.php:302
-#: build/index.js:154
-#: src/edit.js:157
-#: build/index.js:157
+#: includes/templates/default.php:119
+#: includes/templates/woocommerce.php:65
+#: build/index.js:1
+#: src/edit.js:269
+#: src/edit.js:436
 msgid "Product"
 msgstr "Produto"
 
-#: build/render.php:303
-#: src/render.php:303
-#: build/index.js:156
-#: src/edit.js:158
-#: build/index.js:158
+#: includes/templates/default.php:120
+#: build/index.js:1
+#: src/edit.js:270
 msgid "Quantity"
 msgstr "Quantidade"
 
-#: build/render.php:304
-#: src/render.php:304
-#: build/index.js:158
-#: src/edit.js:159
-#: build/index.js:159
+#: includes/templates/default.php:121
+#: build/index.js:1
+#: src/edit.js:271
 msgid "Price"
 msgstr "Preço"
 
-#: build/render.php:373
-#: src/render.php:373
-#: build/index.js:179
-#: src/edit.js:176
-#: build/index.js:176
-msgid "Subtotal:"
-msgstr "Subtotal:"
+#: includes/templates/default.php:141
+#: includes/templates/hero.php:101
+#: includes/templates/woocommerce.php:99
+#. translators: %s: product SKU.
+msgid "SKU: %s"
+msgstr "SKU: %s"
 
-#: build/render.php:378
-#: src/render.php:378
-#: build/index.js:185
-#: src/edit.js:180
-#: build/index.js:180
-msgid "Shipping:"
-msgstr "Frete:"
+#: includes/templates/default.php:161
+#: includes/templates/hero.php:117
+#: includes/templates/woocommerce.php:132
+#: build/index.js:1
+#: src/edit.js:233
+msgid "Downloads"
+msgstr "Downloads"
 
-#: build/render.php:384
-#: src/render.php:384
-#: build/index.js:191
-#: src/edit.js:184
-#: build/index.js:184
-msgid "Tax:"
-msgstr "Imposto:"
+#: includes/templates/default.php:175
+#: includes/templates/hero.php:131
+#: includes/templates/woocommerce.php:146
+msgid "Download"
+msgstr "Download"
 
-#: build/render.php:389
-#: src/render.php:389
-#: build/index.js:198
-#: src/edit.js:188
-#: build/index.js:188
-msgid "Total:"
-msgstr "Total:"
-
-#: build/render.php:398
-#: src/render.php:398
-#: build/index.js:209
-#: src/edit.js:197
-#: build/index.js:197
+#: includes/templates/default.php:207
+#: build/index.js:1
+#: src/edit.js:299
 msgid "Payment Method:"
 msgstr "Método de Pagamento:"
 
-#: includes/class-wc-custom-thankyou.php:68
-#: includes/class-wc-custom-thankyou.php:77
-msgid "Cheatin&#8217; huh?"
-msgstr "Enganando, huh?"
+#: includes/templates/hero.php:26
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:125
+#: build/index.js:1
+#: src/edit.js:34
+#: src/edit.js:322
+msgid "Thank you for your order!"
+msgstr "Obrigado pelo seu pedido!"
 
-#: includes/class-wccty-admin.php:41
-msgid "Custom Thank You"
-msgstr "Agradecimento Personalizado"
+#: includes/templates/hero.php:35
+#. translators: 1: order number, 2: order status.
+msgid "Order #%1$s · %2$s"
+msgstr "Pedido nº %1$s · %2$s"
 
-#: includes/class-wccty-admin.php:47
-msgid "Thank You Page"
-msgstr "Página de Agradecimento"
+#: includes/templates/hero.php:46
+#: build/index.js:1
+#: src/edit.js:335
+msgid "Order date"
+msgstr "Data do pedido"
 
-#: includes/class-wccty-bootstrap.php:98
-msgid "Settings"
-msgstr "Configurações"
+#: includes/templates/hero.php:52
+#: includes/templates/woocommerce.php:66
+#: build/index.js:1
+#: src/edit.js:342
+#: src/edit.js:437
+msgid "Total"
+msgstr "Total"
 
-#: includes/class-wccty-frontend.php:495
-msgid "Thank you. Your order has been received."
-msgstr "Obrigado. Seu pedido foi recebido."
+#: includes/templates/hero.php:59
+#: build/index.js:1
+#: src/edit.js:350
+msgid "Payment"
+msgstr "Pagamento"
 
-#: build/index.js:57
-#: src/edit.js:37
-#: build/index.js:37
-msgid "Custom Thank You Page for WooCommerce Styles"
-msgstr "Estilos da Página de Agradecimento Personalizada para WooCommerce"
+#: includes/templates/hero.php:90
+#. translators: %s: quantity ordered.
+msgid "Qty: %s"
+msgstr "Qtd: %s"
 
-#: build/index.js:60
-#: src/edit.js:41
-#: build/index.js:41
-msgid "Status badge background"
-msgstr "Fundo do crachá de status"
+#: includes/templates/woocommerce.php:25
+#: build/index.js:1
+#: src/edit.js:399
+msgid "Order number:"
+msgstr "Número do pedido:"
 
-#: build/index.js:68
-#: src/edit.js:54
-#: build/index.js:54
-msgid "Status badge text color"
-msgstr "Cor do texto do crachá de status"
+#: includes/templates/woocommerce.php:29
+#: build/index.js:1
+#: src/edit.js:403
+msgid "Date:"
+msgstr "Data:"
 
-#: build/index.js:76
-#: src/edit.js:67
-#: build/index.js:67
-msgid "Section background (addresses, totals)"
-msgstr "Fundo da seção (endereços, totais)"
+#: includes/templates/woocommerce.php:34
+#: build/index.js:1
+#: src/edit.js:407
+msgid "Email:"
+msgstr "E-mail:"
 
-#: build/index.js:84
-#: src/edit.js:80
-#: build/index.js:80
+#: includes/templates/woocommerce.php:40
+#: build/index.js:1
+#: src/edit.js:199
+#: src/edit.js:412
+#: src/edit.js:469
+msgid "Total:"
+msgstr "Total:"
+
+#: includes/templates/woocommerce.php:46
+#: build/index.js:1
+#: src/edit.js:418
+msgid "Payment method:"
+msgstr "Forma de pagamento:"
+
+#: includes/templates/woocommerce.php:60
+#: build/index.js:1
+#: src/edit.js:429
+msgid "Order details"
+msgstr "Detalhes do pedido"
+
+#: includes/templates/woocommerce.php:88
+#. translators: %s: item quantity.
+msgid "× %s"
+msgstr "× %s"
+
+#: includes/templates/woocommerce.php:166
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:152
+#: build/index.js:1
+#: src/edit.js:486
+#: src/edit.js:661
+msgid "Billing address"
+msgstr "Endereço de cobrança"
+
+#: includes/templates/woocommerce.php:181
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:153
+#: build/index.js:1
+#: src/edit.js:500
+#: src/edit.js:666
+msgid "Shipping address"
+msgstr "Endereço de entrega"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:100
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:108
+#: build/index.js:1
+#: src/edit.js:628
+msgid "Layout"
+msgstr "Layout"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:112
+#: build/index.js:1
+#: src/edit.js:632
+msgid "Default"
+msgstr "Padrão"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:113
+#: build/index.js:1
+#: src/edit.js:636
+msgid "WooCommerce Core"
+msgstr "WooCommerce Core"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:114
+#: build/index.js:1
+#: src/edit.js:640
+msgid "Hero + summary cards"
+msgstr "Hero + cartões de resumo"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:122
+msgid "Hero heading"
+msgstr "Título do destaque"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:145
+#: build/index.js:1
+#: src/edit.js:652
+msgid "Sections"
+msgstr "Seções"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:151
+#: build/index.js:1
+#: src/edit.js:656
+msgid "Customer details"
+msgstr "Detalhes do cliente"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:154
+#: build/index.js:1
+#: src/edit.js:671
+msgid "Order note"
+msgstr "Observação do pedido"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:155
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:187
+#: build/index.js:1
+#: src/edit.js:676
+#: src/edit.js:698
+msgid "Order items"
+msgstr "Itens do pedido"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:156
+#: build/index.js:1
+#: src/edit.js:681
+msgid "Order totals"
+msgstr "Totais do pedido"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:157
+#: build/index.js:1
+#: src/edit.js:686
+msgid "Payment method"
+msgstr "Forma de pagamento"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:158
+#: build/index.js:1
+#: src/edit.js:691
+msgid "Downloads (downloadable orders)"
+msgstr "Downloads (pedidos para download)"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:167
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:197
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:209
+msgid "Show"
+msgstr "Mostrar"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:168
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:198
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:210
+msgid "Hide"
+msgstr "Ocultar"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:195
+#: build/index.js:1
+#: src/edit.js:702
+msgid "Show product images"
+msgstr "Mostrar imagens do produto"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:207
+#: build/index.js:1
+#: src/edit.js:707
+msgid "Show product SKU"
+msgstr "Mostrar SKU do produto"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:236
+#: build/index.js:1
+#: src/edit.js:714
+#: src/edit.js:724
+msgid "Colors"
+msgstr "Cores"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:245
+msgid ""
+"The WooCommerce Core layout uses your theme's WooCommerce styling, so these "
+"color options do not apply."
+msgstr ""
+"O layout principal do WooCommerce usa o estilo WooCommerce do seu tema, "
+"então essas opções de cores não se aplicam."
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:256
+#: build/index.js:1
+#: src/edit.js:582
+msgid "Status badge / hero background"
+msgstr "Fundo do selo de status / destaque"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:261
+#: build/index.js:1
+#: src/edit.js:587
+msgid "Status badge / hero text"
+msgstr "Texto do selo de status / destaque"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:266
+#: build/index.js:1
+#: src/edit.js:593
+msgid "Section background (cards, totals)"
+msgstr "Fundo da seção (cards, totais)"
+
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:271
+#: build/index.js:1
+#: src/edit.js:606
 msgid "Payment box background"
 msgstr "Fundo da caixa de pagamento"
 
-#: build/index.js:92
-#: src/edit.js:93
-#: build/index.js:93
-msgid "Payment box border color"
-msgstr "Cor da borda da caixa de pagamento"
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:276
+#: build/index.js:1
+#: src/edit.js:612
+msgid "Payment box text"
+msgstr "Texto da caixa de pagamento"
 
-#: build/index.js:106
-#: src/edit.js:109
-#: build/index.js:109
-msgid "Order #12345"
-msgstr "Pedido #12345"
+#: includes/widgets/class-wccty-elementor-order-confirmation-widget.php:281
+#: build/index.js:1
+#: src/edit.js:618
+msgid "Payment box border"
+msgstr "Borda da caixa de pagamento"
 
-#: build/index.js:109
-#: src/edit.js:111
-#: build/index.js:111
-msgid "Order Date: January 1, 2024"
-msgstr "Data do pedido: 1 de janeiro de 2024"
+#: build/index.js:1
+#: src/edit.js:40
+msgid "We appreciate your business. Your order details are below."
+msgstr "Agradecemos pela sua preferência. Os detalhes do seu pedido estão abaixo."
 
-#: build/index.js:116
-#: src/edit.js:116
+#: build/index.js:1
+#: src/edit.js:52
 msgid "Processing"
 msgstr "Processando"
 
-#: build/index.js:126
-#: src/edit.js:125
-#: build/index.js:125
+#: build/index.js:1
+#: src/edit.js:53
 msgid "John Doe"
-msgstr "John Doe"
+msgstr "João da Silva"
 
-#: build/index.js:126
-#: src/edit.js:127
-#: build/index.js:127
-msgid "john@example.com"
-msgstr "john@example.com"
-
-#: build/index.js:135
-#: build/index.js:142
-#: src/edit.js:135
-#: src/edit.js:144
-#: build/index.js:144
-msgid "123 Main Street"
-msgstr "123 Main Street"
-
-#: build/index.js:135
-#: build/index.js:142
-#: src/edit.js:137
-#: src/edit.js:146
-#: build/index.js:137
-#: build/index.js:146
-msgid "City, State 12345"
-msgstr "Cidade, Estado 12345"
-
-#: build/index.js:164
-#: src/edit.js:164
+#: build/index.js:1
+#: src/edit.js:56
 msgid "Sample Product"
 msgstr "Produto de Exemplo"
 
-#: build/index.js:210
-#: src/edit.js:198
-#: build/index.js:198
+#: build/index.js:1
+#: src/edit.js:64
 msgid "Credit Card"
 msgstr "Cartão de Crédito"
+
+#: build/index.js:1
+#: src/edit.js:129
+#: src/edit.js:449
+msgid "SKU: SAMPLE-123"
+msgstr "SKU: SAMPLE-123"
+
+#: build/index.js:1
+#: src/edit.js:158
+#: src/edit.js:168
+#: src/edit.js:491
+#: src/edit.js:505
+msgid "123 Main Street"
+msgstr "Rua Principal, 123"
+
+#: build/index.js:1
+#: src/edit.js:160
+#: src/edit.js:170
+#: src/edit.js:493
+#: src/edit.js:507
+msgid "City, State 12345"
+msgstr "Cidade, Estado 12345"
+
+#: build/index.js:1
+#: src/edit.js:187
+#: src/edit.js:465
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+#: build/index.js:1
+#: src/edit.js:191
+msgid "Shipping:"
+msgstr "Frete:"
+
+#: build/index.js:1
+#: src/edit.js:195
+msgid "Tax:"
+msgstr "Imposto:"
+
+#: build/index.js:1
+#: src/edit.js:217
+msgid "Please leave the package at the front door."
+msgstr "Por favor, deixe o pacote na porta da frente."
+
+#: build/index.js:1
+#: src/edit.js:237
+msgid "Sample Download File"
+msgstr "Arquivo de Download de Exemplo"
+
+#: build/index.js:1
+#: src/edit.js:250
+msgid "Order #12345"
+msgstr "Pedido #12345"
+
+#: build/index.js:1
+#: src/edit.js:252
+msgid "Order Date: January 1, 2024"
+msgstr "Data do Pedido: 1 de janeiro de 2024"
+
+#: build/index.js:1
+#: src/edit.js:328
+msgid "Order #12345 · Processing"
+msgstr "Pedido #12345 · Processando"
+
+#: build/index.js:1
+#: src/edit.js:368
+msgid "Qty: 2"
+msgstr "Qtd: 2"
+
+#: build/index.js:1
+#: src/edit.js:626
+msgid "Template"
+msgstr "Modelo"
+
+#: build/index.js:1
+#: src/edit.js:716
+msgid ""
+"The WooCommerce Core layout uses your theme’s WooCommerce styling, so the "
+"block’s color options do not apply here."
+msgstr ""
+"O layout principal do WooCommerce usa o estilo WooCommerce do seu tema, "
+"então as opções de cor do bloco não se aplicam aqui."
 
 #: build/block.json
 #: src/block.json
@@ -313,5 +573,5 @@ msgid ""
 "Display complete WooCommerce order details including items, totals, and "
 "customer information."
 msgstr ""
-"Exibir detalhes completos do pedido WooCommerce, incluindo itens, totais e "
+"Exiba detalhes completos do pedido WooCommerce, incluindo itens, totais e "
 "informações do cliente."

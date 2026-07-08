@@ -10,6 +10,33 @@
 	padding: 2rem;
 	background: #fff;
 
+	.wccty-custom-content {
+		margin-bottom: 2rem;
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	.order-customer-note {
+		margin: 2rem 0;
+		padding: 1rem;
+		background: var(--wccty-section-bg, #f9f9f9);
+		border-radius: 4px;
+
+		h3 {
+			margin: 0 0 0.5rem 0;
+			color: #333;
+			font-size: 1.25rem;
+		}
+
+		p {
+			margin: 0;
+			color: #666;
+			line-height: 1.6;
+		}
+	}
+
 	.order-confirmation-error {
 		padding: 1.5rem;
 		background: #fff3cd;
@@ -65,13 +92,17 @@
 	}
 
 	.order-details {
-		display: grid;
-		grid-template-columns: 1fr;
+		// Flex row on desktop, stacked on mobile. .addresses uses display:contents
+		// so customer / billing / shipping are all equal-width siblings of the row:
+		// hiding any one keeps the rest equal instead of collapsing to a fraction.
+		display: flex;
+		flex-direction: column;
 		gap: 2rem;
 		margin-bottom: 2rem;
 
 		@media (min-width: 768px) {
-			grid-template-columns: 1fr 2fr;
+			flex-direction: row;
+			align-items: flex-start;
 		}
 
 		h3 {
@@ -88,27 +119,67 @@
 			line-height: 1.6;
 		}
 
-		.customer-details {
+		.customer-details,
+		.billing-address,
+		.shipping-address {
 			padding: 1rem;
 			background: var(--wccty-section-bg, #f9f9f9);
 			border-radius: 4px;
+
+			@media (min-width: 768px) {
+				flex: 1 1 0;
+			}
 		}
 
 		.addresses {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
+			display: contents;
+		}
+	}
 
-			@media (min-width: 768px) {
-				grid-template-columns: 1fr 1fr;
-			}
+	.order-item-product {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
 
-			.billing-address,
-			.shipping-address {
-				padding: 1rem;
-				background: var(--wccty-section-bg, #f9f9f9);
-				border-radius: 4px;
-			}
+	.order-item-image {
+		width: 48px;
+		height: 48px;
+		object-fit: cover;
+		border-radius: 4px;
+		flex-shrink: 0;
+	}
+
+	.order-item-meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+	}
+
+	.order-item-sku {
+		font-size: 0.8125rem;
+		color: #888;
+	}
+
+	.order-downloads {
+		margin-bottom: 2rem;
+
+		h3 {
+			margin: 0 0 1rem 0;
+			color: #333;
+			font-size: 1.25rem;
+			border-bottom: 1px solid #e0e0e0;
+			padding-bottom: 0.5rem;
+		}
+
+		ul {
+			margin: 0;
+			padding-left: 1.25rem;
+		}
+
+		li {
+			margin: 0.25rem 0;
+			color: #666;
 		}
 	}
 
@@ -166,15 +237,17 @@
 	}
 
 	.order-totals {
+		// Shrink the box to its content and right-align it, so the summary reads
+		// like a receipt instead of a full-width box with a large empty area.
 		margin-top: 2rem;
+		margin-left: auto;
+		max-width: 26rem;
 		padding: 1.5rem;
 		background: var(--wccty-section-bg, #f9f9f9);
 		border-radius: 4px;
 
 		table {
 			width: 100%;
-			max-width: 400px;
-			margin-left: auto;
 			border-collapse: collapse;
 			border: none;
 
@@ -227,9 +300,185 @@
 			margin: 0;
 			color: var(--wccty-payment-text-color, #333333);
 
+			// The label inherits the payment text color. "Payment box border" now
+			// only affects the border; "Payment box text" affects both label and value.
 			strong {
-				color: var(--wccty-payment-border-color, #2196f3);
+				color: inherit;
 			}
+		}
+	}
+
+	// -----------------------------------------------------------------------
+	// "Hero + summary cards" template
+	// -----------------------------------------------------------------------
+	&.wccty-template-hero {
+		.wccty-hero-banner {
+			margin-bottom: 2rem;
+			padding: 2.5rem 1.5rem;
+			border-radius: 8px;
+			background: var(--wccty-accent-color, #4caf50);
+			color: var(--wccty-accent-text-color, #ffffff);
+			text-align: center;
+		}
+
+		.wccty-hero-check {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 56px;
+			height: 56px;
+			margin-bottom: 1rem;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.22);
+			color: inherit;
+		}
+
+		.wccty-hero-title {
+			margin: 0 0 0.5rem 0;
+			color: inherit;
+			font-size: 2rem;
+		}
+
+		.wccty-hero-subtitle {
+			margin: 0;
+			font-size: 1rem;
+			opacity: 0.9;
+		}
+
+		.wccty-hero-cards {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			margin-bottom: 2rem;
+		}
+
+		.wccty-hero-card {
+			flex: 1 1 0;
+			min-width: 140px;
+			display: flex;
+			flex-direction: column;
+			gap: 0.35rem;
+			padding: 1.25rem;
+			background: var(--wccty-section-bg, #f9f9f9);
+			border-radius: 8px;
+			text-align: center;
+		}
+
+		.wccty-hero-card-label {
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #888;
+		}
+
+		.wccty-hero-card-value {
+			font-size: 1.15rem;
+			font-weight: 700;
+			color: #333;
+		}
+
+		.wccty-hero-items {
+			margin-bottom: 2rem;
+
+			h3 {
+				margin: 0 0 1rem 0;
+				color: #333;
+				font-size: 1.25rem;
+				border-bottom: 1px solid #e0e0e0;
+				padding-bottom: 0.5rem;
+			}
+		}
+
+		.wccty-hero-item-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.wccty-hero-item {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			padding: 1rem 0;
+			border-bottom: 1px solid #e0e0e0;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+
+		.wccty-hero-item-meta {
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 0.2rem;
+			min-width: 0;
+		}
+
+		.wccty-hero-item-qty {
+			font-size: 0.85rem;
+			color: #888;
+		}
+
+		.wccty-hero-item-price {
+			flex-shrink: 0;
+			font-weight: 700;
+			color: #333;
+			white-space: nowrap;
+		}
+
+		// The reused sections that follow the totals need breathing room above them.
+		.order-customer-note,
+		.order-details {
+			margin-top: 2rem;
+		}
+	}
+
+	// -----------------------------------------------------------------------
+	// "WooCommerce Core" template
+	// -----------------------------------------------------------------------
+	&.wccty-template-woocommerce {
+		// Some themes (e.g. Astra) zero the left padding of order-table cells on
+		// checkout-flagged pages (`.woocommerce-checkout table.shop_table td { padding: 10px 10px 10px 0 }`),
+		// which leaves the "WooCommerce Core" order details hugging the cell wall.
+		// The custom Thank You page is checkout-flagged (so WooCommerce enqueues its
+		// styles), so restore even cell padding here. The `.woocommerce` ancestor is
+		// included so this out-specifies the theme's checkout rule regardless of load order.
+		.woocommerce table.shop_table th,
+		.woocommerce table.shop_table td {
+			padding: 0.7em 1em;
+		}
+
+		// WooCommerce/theme CSS boxes the address title (top/left/right border +
+		// background) and the address itself. Strip both so the customer details
+		// read as clean text (there is no control to adjust these borders). The
+		// .woocommerce-customer-details ancestor is included to out-specify the
+		// theme's own `.woocommerce .woocommerce-customer-details ...` rule.
+		.woocommerce-customer-details .woocommerce-column__title {
+			border: 0;
+			padding: 0;
+			margin-bottom: 0.5rem;
+			background: none;
+		}
+
+		.woocommerce-customer-details address {
+			border: 0;
+			border-radius: 0;
+			padding: 0;
+		}
+
+		// Product image support (off by default in WooCommerce's own table).
+		.wccty-woo-item {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.wccty-woo-item-image img {
+			width: 48px;
+			height: 48px;
+			object-fit: cover;
+			border-radius: 4px;
 		}
 	}
 }

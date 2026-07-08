@@ -1,24 +1,20 @@
 {
-  "name": "woocommerce-custom-thankyou",
-  "title": "WC Custom Thank You",
-  "description": "A WooCommerce extension that allows you to define e custom Thank You page.",
-  "version": "1.1.0",
-  "homepage": "http://nicolamustone.it/projects/woocommerce-custom-thankyou/",
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/SiR-DanieL/woocommerce-custom-thankyou.git"
-  },
-  "main": "Gruntfile.js",
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-checktextdomain": "^0.1.1",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-compress": "~0.5.2",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-wp-i18n": "^0.4.9"
-  },
-  "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.1.0"
-  }
+    "name": "block-wc-custom-thank-you",
+    "version": "2.2.0",
+    "description": "Display complete WooCommerce order details including items, totals, and customer information.",
+    "author": "wccty block authoring tool",
+    "license": "GPL-2.0-or-later",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "wp-scripts build --webpack-copy-php",
+        "format": "wp-scripts format",
+        "lint:css": "wp-scripts lint-style",
+        "lint:js": "wp-scripts lint-js",
+        "packages-update": "wp-scripts packages-update",
+        "plugin-zip": "wp-scripts plugin-zip",
+        "start": "wp-scripts start --blocks-manifest"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^30.15.0"
+    }
 }

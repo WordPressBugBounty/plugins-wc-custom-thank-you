@@ -14,9 +14,17 @@ if ( class_exists( 'WCCTY_Admin', false ) ) {
 }
 
 /**
- * Adds the Custom Thank You option in WooCommerce settings.
+ * Adds the Order Confirmation option in WooCommerce settings.
  */
 final class WCCTY_Admin {
+
+	/**
+	 * Anchor id rendered just before the settings heading, so the plugin's
+	 * "Settings" action link can jump straight to the Order Confirmation section.
+	 *
+	 * @var string
+	 */
+	const SETTINGS_ANCHOR = 'wc_custom_thankyou_settings';
 
 	/**
 	 * Register hooks.
@@ -26,25 +34,35 @@ final class WCCTY_Admin {
 	public function init() {
 		add_filter( 'woocommerce_settings_pages', array( $this, 'add_settings' ) );
 
+		// Render the anchor for our custom `wccty_anchor` settings field type.
+		add_action( 'woocommerce_admin_field_wccty_anchor', array( $this, 'render_anchor' ) );
+
 		// Ensure our option is strictly sanitized (WooCommerce settings API sanitizes, but we harden it).
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'sanitize_option' ), 10, 3 );
 	}
 
 	/**
-	 * Add the Thank You page dropdown in Settings > Advanced > Page setup.
+	 * Add the Order Confirmation page dropdown in Settings > Advanced > Page setup.
 	 *
 	 * @param  array $settings The core settings.
 	 * @return array
 	 */
 	public function add_settings( $settings ) {
+		// Empty anchor rendered just before the section heading, so the plugin's
+		// "Settings" link can deep-link to this section (see render_anchor()).
 		$settings[] = array(
-			'title' => esc_html__( 'Custom Thank You', 'wc-custom-thank-you' ),
+			'type' => 'wccty_anchor',
+			'id'   => self::SETTINGS_ANCHOR,
+		);
+
+		$settings[] = array(
+			'title' => esc_html__( 'Order Confirmation', 'wc-custom-thank-you' ),
 			'type'  => 'title',
 			'id'    => 'wc_custom_thankyou_options',
 		);
 
 		$settings[] = array(
-			'title'    => esc_html__( 'Thank You Page', 'wc-custom-thank-you' ),
+			'title'    => esc_html__( 'Order confirmation page', 'wc-custom-thank-you' ),
 			'id'       => 'woocommerce_custom_thankyou_page_id',
 			'type'     => 'single_select_page',
 			'default'  => '',
@@ -59,6 +77,26 @@ final class WCCTY_Admin {
 		);
 
 		return $settings;
+	}
+
+	/**
+	 * Render the deep-link anchor for the `wccty_anchor` settings field type.
+	 *
+	 * WooCommerce renders section titles as a plain <h2> with no id, so this
+	 * empty element (placed immediately before the heading) gives the "Settings"
+	 * action link a stable target. `scroll-margin-top` keeps the heading clear of
+	 * the fixed admin bar when the browser jumps to it.
+	 *
+	 * @param array $field Field definition (expects `id`).
+	 * @return void
+	 */
+	public function render_anchor( $field ) {
+		$id = ( is_array( $field ) && ! empty( $field['id'] ) ) ? $field['id'] : self::SETTINGS_ANCHOR;
+
+		printf(
+			'<div id="%s" style="scroll-margin-top:60px" aria-hidden="true"></div>',
+			esc_attr( $id )
+		);
 	}
 
 	/**
